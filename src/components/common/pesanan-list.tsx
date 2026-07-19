@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { format, subDays } from "date-fns";
 import { id as localeId } from "date-fns/locale";
 import { CalendarIcon, Search } from "lucide-react";
@@ -88,6 +89,7 @@ export function PesananList({
   statusClass: string;
   actions?: PesananAction[];
 }) {
+  const navigate = useNavigate();
   const [search, setSearch] = useState("");
   const [searchField, setSearchField] = useState("no_pesanan");
   const [marketplace, setMarketplace] = useState("all");
@@ -160,7 +162,15 @@ export function PesananList({
     setSelected(next);
   };
 
+  const isScanAndKirimLabel = (label: string) =>
+    label === "Scan & Kirim" || label === "Scan dan Kirim";
+
   const handleAction = (label: string) => {
+    if (isScanAndKirimLabel(label)) {
+      navigate({ to: "/pesanan/scan-kirim" });
+      return;
+    }
+
     toast.success(`${label}`, {
       description: `${totalSelected} pesanan diproses (simulasi).`,
     });
@@ -325,18 +335,22 @@ export function PesananList({
       {/* Action buttons */}
       {actions.length > 0 && (
         <div className="flex flex-wrap items-center gap-2">
-          {actions.map((a) => (
-            <Button
-              key={a.label}
-              size="sm"
-              variant={a.variant ?? "outline"}
-              disabled={!hasSelection}
-              onClick={() => handleAction(a.label)}
-              title={!hasSelection ? "Pilih minimal 1 pesanan" : undefined}
-            >
-              {a.label}
-            </Button>
-          ))}
+          {actions.map((a) => {
+            const isScanAndKirim = isScanAndKirimLabel(a.label);
+            return (
+              <Button
+                key={a.label}
+                size="sm"
+                variant={a.variant ?? "outline"}
+                disabled={!hasSelection && !isScanAndKirim}
+                onClick={() => handleAction(a.label)}
+                aria-label={a.label}
+                title={!hasSelection && !isScanAndKirim ? "Pilih minimal 1 pesanan" : undefined}
+              >
+                {a.label}
+              </Button>
+            );
+          })}
           <span className="text-xs text-muted-foreground">
             {hasSelection
               ? `${totalSelected} pesanan terpilih`
@@ -357,8 +371,8 @@ export function PesananList({
                     aria-label="Pilih semua"
                   />
                 </TableHead>
-                <TableHead>No. Pesanan</TableHead>
                 <TableHead className="min-w-[280px]">Produk</TableHead>
+                <TableHead>No. Resi Pengiriman</TableHead>
                 <TableHead>Pembeli</TableHead>
                 <TableHead>Marketplace / Toko</TableHead>
                 <TableHead>Kurir</TableHead>
@@ -390,7 +404,6 @@ export function PesananList({
                       aria-label={`Pilih ${r.id}`}
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{r.id}</TableCell>
                   <TableCell>
                     <ProductCell
                       productName={r.productName}
@@ -398,6 +411,7 @@ export function PesananList({
                       imageUrl={r.imageUrl}
                     />
                   </TableCell>
+                  <TableCell className="font-medium">{(r as any).resi ?? r.id}</TableCell>
                   <TableCell>{r.buyer}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">

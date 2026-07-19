@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
 import { ChevronRight } from "lucide-react";
 import {
@@ -86,6 +86,10 @@ function CollapsibleNavItem({
   const parentActive =
     pathname === item.url || pathname.startsWith(item.url + "/");
   const [open, setOpen] = useState(parentActive);
+
+  useEffect(() => {
+    setOpen(parentActive);
+  }, [parentActive]);
 
   return (
     <Collapsible open={open} onOpenChange={setOpen} asChild>

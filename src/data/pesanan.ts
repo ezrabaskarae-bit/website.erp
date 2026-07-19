@@ -5,6 +5,8 @@ export type Kurir = "JNE" | "J&T" | "SiCepat" | "AnterAja" | "Ninja Xpress";
 
 export type PesananRow = {
   id: string;
+  // nomor resi pengiriman yang akan digunakan untuk Scan & Kirim
+  resi?: string;
   buyer: string;
   marketplace: Marketplace;
   store: string;
@@ -32,6 +34,8 @@ export const pesananSample: PesananRow[] = buyers.map((buyer, i) => {
   const p = masterProducts[i % masterProducts.length];
   return {
     id: `INV-2607${String(180 + i).padStart(4, "0")}`,
+    // mock nomor resi; dipertahankan sebagai properti baru selain `id`
+    resi: `TRK${String(100000 + i)}`,
     buyer,
     marketplace: marketplaces[i % marketplaces.length],
     store: stores[i % stores.length],

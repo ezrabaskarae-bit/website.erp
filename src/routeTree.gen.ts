@@ -9,90 +9,56 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AppStokRouteImport } from './routes/_app.stok'
-import { Route as AppSinkronisasiRouteImport } from './routes/_app.sinkronisasi'
-import { Route as AppProdukRouteImport } from './routes/_app.produk'
-import { Route as AppPesananRouteImport } from './routes/_app.pesanan'
-import { Route as AppPenggunaRouteImport } from './routes/_app.pengguna'
-import { Route as AppPengaturanRouteImport } from './routes/_app.pengaturan'
-import { Route as AppMarketplaceRouteImport } from './routes/_app.marketplace'
-import { Route as AppLaporanRouteImport } from './routes/_app.laporan'
-import { Route as AppGudangRouteImport } from './routes/_app.gudang'
+import { Route as AppRouteImport } from './routes/_app'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
-import { Route as AppProdukIndexRouteImport } from './routes/_app.produk.index'
-import { Route as AppPesananIndexRouteImport } from './routes/_app.pesanan.index'
+import { Route as AppGudangRouteImport } from './routes/_app.gudang'
+import { Route as AppLaporanRouteImport } from './routes/_app.laporan'
+import { Route as AppMarketplaceRouteImport } from './routes/_app.marketplace'
+import { Route as AppPengaturanRouteImport } from './routes/_app.pengaturan'
+import { Route as AppPenggunaRouteImport } from './routes/_app.pengguna'
+import { Route as AppPesananRouteImport } from './routes/_app.pesanan'
+import { Route as AppProdukRouteImport } from './routes/_app.produk'
+import { Route as AppSinkronisasiRouteImport } from './routes/_app.sinkronisasi'
+import { Route as AppStokRouteImport } from './routes/_app.stok'
 import { Route as AppGudangIndexRouteImport } from './routes/_app.gudang.index'
-import { Route as AppProdukLiveRouteImport } from './routes/_app.produk.live'
-import { Route as AppProdukDraftRouteImport } from './routes/_app.produk.draft'
-import { Route as AppProdukArsipRouteImport } from './routes/_app.produk.arsip'
-import { Route as AppPesananSelesaiRouteImport } from './routes/_app.pesanan.selesai'
-import { Route as AppPesananProsesMarketplaceRouteImport } from './routes/_app.pesanan.proses-marketplace'
-import { Route as AppPesananMenungguPickupRouteImport } from './routes/_app.pesanan.menunggu-pickup'
-import { Route as AppPesananMenungguDiprosesRouteImport } from './routes/_app.pesanan.menunggu-diproses'
-import { Route as AppPesananMenungguDicetakRouteImport } from './routes/_app.pesanan.menunggu-dicetak'
-import { Route as AppPesananDikirimRouteImport } from './routes/_app.pesanan.dikirim'
-import { Route as AppPesananDibatalkanRouteImport } from './routes/_app.pesanan.dibatalkan'
-import { Route as AppGudangStockOpnameRouteImport } from './routes/_app.gudang.stock-opname'
-import { Route as AppGudangSkuGudangRouteImport } from './routes/_app.gudang.sku-gudang'
-import { Route as AppGudangRincianStokRouteImport } from './routes/_app.gudang.rincian-stok'
-import { Route as AppGudangPenguranganStokRouteImport } from './routes/_app.gudang.pengurangan-stok'
 import { Route as AppGudangPenambahanStokRouteImport } from './routes/_app.gudang.penambahan-stok'
+import { Route as AppGudangPenguranganStokRouteImport } from './routes/_app.gudang.pengurangan-stok'
+import { Route as AppGudangRincianStokRouteImport } from './routes/_app.gudang.rincian-stok'
+import { Route as AppGudangSkuGudangRouteImport } from './routes/_app.gudang.sku-gudang'
+import { Route as AppGudangStockOpnameRouteImport } from './routes/_app.gudang.stock-opname'
+import { Route as AppPesananIndexRouteImport } from './routes/_app.pesanan.index'
+import { Route as AppPesananDibatalkanRouteImport } from './routes/_app.pesanan.dibatalkan'
+import { Route as AppPesananDikirimRouteImport } from './routes/_app.pesanan.dikirim'
+import { Route as AppPesananMenungguDicetakRouteImport } from './routes/_app.pesanan.menunggu-dicetak'
+import { Route as AppPesananMenungguDiprosesRouteImport } from './routes/_app.pesanan.menunggu-diproses'
+import { Route as AppPesananMenungguPickupRouteImport } from './routes/_app.pesanan.menunggu-pickup'
+import { Route as AppPesananProsesMarketplaceRouteImport } from './routes/_app.pesanan.proses-marketplace'
+import { Route as AppPesananScanKirimRouteImport } from './routes/_app.pesanan.scan-kirim'
+import { Route as AppPesananSelesaiRouteImport } from './routes/_app.pesanan.selesai'
+import { Route as AppProdukIndexRouteImport } from './routes/_app.produk.index'
+import { Route as AppProdukArsipRouteImport } from './routes/_app.produk.arsip'
+import { Route as AppProdukDraftRouteImport } from './routes/_app.produk.draft'
+import { Route as AppProdukLiveRouteImport } from './routes/_app.produk.live'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppRoute = AppRouteImport.update({
   id: '/_app',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppStokRoute = AppStokRouteImport.update({
-  id: '/stok',
-  path: '/stok',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppSinkronisasiRoute = AppSinkronisasiRouteImport.update({
-  id: '/sinkronisasi',
-  path: '/sinkronisasi',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppProdukRoute = AppProdukRouteImport.update({
-  id: '/produk',
-  path: '/produk',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppPesananRoute = AppPesananRouteImport.update({
-  id: '/pesanan',
-  path: '/pesanan',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppPenggunaRoute = AppPenggunaRouteImport.update({
-  id: '/pengguna',
-  path: '/pengguna',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppPengaturanRoute = AppPengaturanRouteImport.update({
-  id: '/pengaturan',
-  path: '/pengaturan',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppMarketplaceRoute = AppMarketplaceRouteImport.update({
-  id: '/marketplace',
-  path: '/marketplace',
-  getParentRoute: () => AppRoute,
-} as any)
-const AppLaporanRoute = AppLaporanRouteImport.update({
-  id: '/laporan',
-  path: '/laporan',
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => AppRoute,
 } as any)
 const AppGudangRoute = AppGudangRouteImport.update({
@@ -100,93 +66,54 @@ const AppGudangRoute = AppGudangRouteImport.update({
   path: '/gudang',
   getParentRoute: () => AppRoute,
 } as any)
-const AppDashboardRoute = AppDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AppLaporanRoute = AppLaporanRouteImport.update({
+  id: '/laporan',
+  path: '/laporan',
   getParentRoute: () => AppRoute,
 } as any)
-const AppProdukIndexRoute = AppProdukIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppProdukRoute,
+const AppMarketplaceRoute = AppMarketplaceRouteImport.update({
+  id: '/marketplace',
+  path: '/marketplace',
+  getParentRoute: () => AppRoute,
 } as any)
-const AppPesananIndexRoute = AppPesananIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AppPesananRoute,
+const AppPengaturanRoute = AppPengaturanRouteImport.update({
+  id: '/pengaturan',
+  path: '/pengaturan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPenggunaRoute = AppPenggunaRouteImport.update({
+  id: '/pengguna',
+  path: '/pengguna',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPesananRoute = AppPesananRouteImport.update({
+  id: '/pesanan',
+  path: '/pesanan',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProdukRoute = AppProdukRouteImport.update({
+  id: '/produk',
+  path: '/produk',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSinkronisasiRoute = AppSinkronisasiRouteImport.update({
+  id: '/sinkronisasi',
+  path: '/sinkronisasi',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppStokRoute = AppStokRouteImport.update({
+  id: '/stok',
+  path: '/stok',
+  getParentRoute: () => AppRoute,
 } as any)
 const AppGudangIndexRoute = AppGudangIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AppGudangRoute,
 } as any)
-const AppProdukLiveRoute = AppProdukLiveRouteImport.update({
-  id: '/live',
-  path: '/live',
-  getParentRoute: () => AppProdukRoute,
-} as any)
-const AppProdukDraftRoute = AppProdukDraftRouteImport.update({
-  id: '/draft',
-  path: '/draft',
-  getParentRoute: () => AppProdukRoute,
-} as any)
-const AppProdukArsipRoute = AppProdukArsipRouteImport.update({
-  id: '/arsip',
-  path: '/arsip',
-  getParentRoute: () => AppProdukRoute,
-} as any)
-const AppPesananSelesaiRoute = AppPesananSelesaiRouteImport.update({
-  id: '/selesai',
-  path: '/selesai',
-  getParentRoute: () => AppPesananRoute,
-} as any)
-const AppPesananProsesMarketplaceRoute =
-  AppPesananProsesMarketplaceRouteImport.update({
-    id: '/proses-marketplace',
-    path: '/proses-marketplace',
-    getParentRoute: () => AppPesananRoute,
-  } as any)
-const AppPesananMenungguPickupRoute =
-  AppPesananMenungguPickupRouteImport.update({
-    id: '/menunggu-pickup',
-    path: '/menunggu-pickup',
-    getParentRoute: () => AppPesananRoute,
-  } as any)
-const AppPesananMenungguDiprosesRoute =
-  AppPesananMenungguDiprosesRouteImport.update({
-    id: '/menunggu-diproses',
-    path: '/menunggu-diproses',
-    getParentRoute: () => AppPesananRoute,
-  } as any)
-const AppPesananMenungguDicetakRoute =
-  AppPesananMenungguDicetakRouteImport.update({
-    id: '/menunggu-dicetak',
-    path: '/menunggu-dicetak',
-    getParentRoute: () => AppPesananRoute,
-  } as any)
-const AppPesananDikirimRoute = AppPesananDikirimRouteImport.update({
-  id: '/dikirim',
-  path: '/dikirim',
-  getParentRoute: () => AppPesananRoute,
-} as any)
-const AppPesananDibatalkanRoute = AppPesananDibatalkanRouteImport.update({
-  id: '/dibatalkan',
-  path: '/dibatalkan',
-  getParentRoute: () => AppPesananRoute,
-} as any)
-const AppGudangStockOpnameRoute = AppGudangStockOpnameRouteImport.update({
-  id: '/stock-opname',
-  path: '/stock-opname',
-  getParentRoute: () => AppGudangRoute,
-} as any)
-const AppGudangSkuGudangRoute = AppGudangSkuGudangRouteImport.update({
-  id: '/sku-gudang',
-  path: '/sku-gudang',
-  getParentRoute: () => AppGudangRoute,
-} as any)
-const AppGudangRincianStokRoute = AppGudangRincianStokRouteImport.update({
-  id: '/rincian-stok',
-  path: '/rincian-stok',
+const AppGudangPenambahanStokRoute = AppGudangPenambahanStokRouteImport.update({
+  id: '/penambahan-stok',
+  path: '/penambahan-stok',
   getParentRoute: () => AppGudangRoute,
 } as any)
 const AppGudangPenguranganStokRoute =
@@ -195,10 +122,89 @@ const AppGudangPenguranganStokRoute =
     path: '/pengurangan-stok',
     getParentRoute: () => AppGudangRoute,
   } as any)
-const AppGudangPenambahanStokRoute = AppGudangPenambahanStokRouteImport.update({
-  id: '/penambahan-stok',
-  path: '/penambahan-stok',
+const AppGudangRincianStokRoute = AppGudangRincianStokRouteImport.update({
+  id: '/rincian-stok',
+  path: '/rincian-stok',
   getParentRoute: () => AppGudangRoute,
+} as any)
+const AppGudangSkuGudangRoute = AppGudangSkuGudangRouteImport.update({
+  id: '/sku-gudang',
+  path: '/sku-gudang',
+  getParentRoute: () => AppGudangRoute,
+} as any)
+const AppGudangStockOpnameRoute = AppGudangStockOpnameRouteImport.update({
+  id: '/stock-opname',
+  path: '/stock-opname',
+  getParentRoute: () => AppGudangRoute,
+} as any)
+const AppPesananIndexRoute = AppPesananIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppPesananRoute,
+} as any)
+const AppPesananDibatalkanRoute = AppPesananDibatalkanRouteImport.update({
+  id: '/dibatalkan',
+  path: '/dibatalkan',
+  getParentRoute: () => AppPesananRoute,
+} as any)
+const AppPesananDikirimRoute = AppPesananDikirimRouteImport.update({
+  id: '/dikirim',
+  path: '/dikirim',
+  getParentRoute: () => AppPesananRoute,
+} as any)
+const AppPesananMenungguDicetakRoute =
+  AppPesananMenungguDicetakRouteImport.update({
+    id: '/menunggu-dicetak',
+    path: '/menunggu-dicetak',
+    getParentRoute: () => AppPesananRoute,
+  } as any)
+const AppPesananMenungguDiprosesRoute =
+  AppPesananMenungguDiprosesRouteImport.update({
+    id: '/menunggu-diproses',
+    path: '/menunggu-diproses',
+    getParentRoute: () => AppPesananRoute,
+  } as any)
+const AppPesananMenungguPickupRoute =
+  AppPesananMenungguPickupRouteImport.update({
+    id: '/menunggu-pickup',
+    path: '/menunggu-pickup',
+    getParentRoute: () => AppPesananRoute,
+  } as any)
+const AppPesananProsesMarketplaceRoute =
+  AppPesananProsesMarketplaceRouteImport.update({
+    id: '/proses-marketplace',
+    path: '/proses-marketplace',
+    getParentRoute: () => AppPesananRoute,
+  } as any)
+const AppPesananScanKirimRoute = AppPesananScanKirimRouteImport.update({
+  id: '/scan-kirim',
+  path: '/scan-kirim',
+  getParentRoute: () => AppPesananRoute,
+} as any)
+const AppPesananSelesaiRoute = AppPesananSelesaiRouteImport.update({
+  id: '/selesai',
+  path: '/selesai',
+  getParentRoute: () => AppPesananRoute,
+} as any)
+const AppProdukIndexRoute = AppProdukIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppProdukRoute,
+} as any)
+const AppProdukArsipRoute = AppProdukArsipRouteImport.update({
+  id: '/arsip',
+  path: '/arsip',
+  getParentRoute: () => AppProdukRoute,
+} as any)
+const AppProdukDraftRoute = AppProdukDraftRouteImport.update({
+  id: '/draft',
+  path: '/draft',
+  getParentRoute: () => AppProdukRoute,
+} as any)
+const AppProdukLiveRoute = AppProdukLiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => AppProdukRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -225,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/pesanan/menunggu-diproses': typeof AppPesananMenungguDiprosesRoute
   '/pesanan/menunggu-pickup': typeof AppPesananMenungguPickupRoute
   '/pesanan/proses-marketplace': typeof AppPesananProsesMarketplaceRoute
+  '/pesanan/scan-kirim': typeof AppPesananScanKirimRoute
   '/pesanan/selesai': typeof AppPesananSelesaiRoute
   '/produk/arsip': typeof AppProdukArsipRoute
   '/produk/draft': typeof AppProdukDraftRoute
@@ -254,6 +261,7 @@ export interface FileRoutesByTo {
   '/pesanan/menunggu-diproses': typeof AppPesananMenungguDiprosesRoute
   '/pesanan/menunggu-pickup': typeof AppPesananMenungguPickupRoute
   '/pesanan/proses-marketplace': typeof AppPesananProsesMarketplaceRoute
+  '/pesanan/scan-kirim': typeof AppPesananScanKirimRoute
   '/pesanan/selesai': typeof AppPesananSelesaiRoute
   '/produk/arsip': typeof AppProdukArsipRoute
   '/produk/draft': typeof AppProdukDraftRoute
@@ -288,6 +296,7 @@ export interface FileRoutesById {
   '/_app/pesanan/menunggu-diproses': typeof AppPesananMenungguDiprosesRoute
   '/_app/pesanan/menunggu-pickup': typeof AppPesananMenungguPickupRoute
   '/_app/pesanan/proses-marketplace': typeof AppPesananProsesMarketplaceRoute
+  '/_app/pesanan/scan-kirim': typeof AppPesananScanKirimRoute
   '/_app/pesanan/selesai': typeof AppPesananSelesaiRoute
   '/_app/produk/arsip': typeof AppProdukArsipRoute
   '/_app/produk/draft': typeof AppProdukDraftRoute
@@ -322,6 +331,7 @@ export interface FileRouteTypes {
     | '/pesanan/menunggu-diproses'
     | '/pesanan/menunggu-pickup'
     | '/pesanan/proses-marketplace'
+    | '/pesanan/scan-kirim'
     | '/pesanan/selesai'
     | '/produk/arsip'
     | '/produk/draft'
@@ -351,6 +361,7 @@ export interface FileRouteTypes {
     | '/pesanan/menunggu-diproses'
     | '/pesanan/menunggu-pickup'
     | '/pesanan/proses-marketplace'
+    | '/pesanan/scan-kirim'
     | '/pesanan/selesai'
     | '/produk/arsip'
     | '/produk/draft'
@@ -384,6 +395,7 @@ export interface FileRouteTypes {
     | '/_app/pesanan/menunggu-diproses'
     | '/_app/pesanan/menunggu-pickup'
     | '/_app/pesanan/proses-marketplace'
+    | '/_app/pesanan/scan-kirim'
     | '/_app/pesanan/selesai'
     | '/_app/produk/arsip'
     | '/_app/produk/draft'
@@ -401,11 +413,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_app': {
@@ -415,67 +427,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_app/stok': {
-      id: '/_app/stok'
-      path: '/stok'
-      fullPath: '/stok'
-      preLoaderRoute: typeof AppStokRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/sinkronisasi': {
-      id: '/_app/sinkronisasi'
-      path: '/sinkronisasi'
-      fullPath: '/sinkronisasi'
-      preLoaderRoute: typeof AppSinkronisasiRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/produk': {
-      id: '/_app/produk'
-      path: '/produk'
-      fullPath: '/produk'
-      preLoaderRoute: typeof AppProdukRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/pesanan': {
-      id: '/_app/pesanan'
-      path: '/pesanan'
-      fullPath: '/pesanan'
-      preLoaderRoute: typeof AppPesananRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/pengguna': {
-      id: '/_app/pengguna'
-      path: '/pengguna'
-      fullPath: '/pengguna'
-      preLoaderRoute: typeof AppPenggunaRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/pengaturan': {
-      id: '/_app/pengaturan'
-      path: '/pengaturan'
-      fullPath: '/pengaturan'
-      preLoaderRoute: typeof AppPengaturanRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/marketplace': {
-      id: '/_app/marketplace'
-      path: '/marketplace'
-      fullPath: '/marketplace'
-      preLoaderRoute: typeof AppMarketplaceRouteImport
-      parentRoute: typeof AppRoute
-    }
-    '/_app/laporan': {
-      id: '/_app/laporan'
-      path: '/laporan'
-      fullPath: '/laporan'
-      preLoaderRoute: typeof AppLaporanRouteImport
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/gudang': {
@@ -485,26 +448,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGudangRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/dashboard': {
-      id: '/_app/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AppDashboardRouteImport
+    '/_app/laporan': {
+      id: '/_app/laporan'
+      path: '/laporan'
+      fullPath: '/laporan'
+      preLoaderRoute: typeof AppLaporanRouteImport
       parentRoute: typeof AppRoute
     }
-    '/_app/produk/': {
-      id: '/_app/produk/'
-      path: '/'
-      fullPath: '/produk/'
-      preLoaderRoute: typeof AppProdukIndexRouteImport
-      parentRoute: typeof AppProdukRoute
+    '/_app/marketplace': {
+      id: '/_app/marketplace'
+      path: '/marketplace'
+      fullPath: '/marketplace'
+      preLoaderRoute: typeof AppMarketplaceRouteImport
+      parentRoute: typeof AppRoute
     }
-    '/_app/pesanan/': {
-      id: '/_app/pesanan/'
-      path: '/'
-      fullPath: '/pesanan/'
-      preLoaderRoute: typeof AppPesananIndexRouteImport
-      parentRoute: typeof AppPesananRoute
+    '/_app/pengaturan': {
+      id: '/_app/pengaturan'
+      path: '/pengaturan'
+      fullPath: '/pengaturan'
+      preLoaderRoute: typeof AppPengaturanRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pengguna': {
+      id: '/_app/pengguna'
+      path: '/pengguna'
+      fullPath: '/pengguna'
+      preLoaderRoute: typeof AppPenggunaRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/pesanan': {
+      id: '/_app/pesanan'
+      path: '/pesanan'
+      fullPath: '/pesanan'
+      preLoaderRoute: typeof AppPesananRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/produk': {
+      id: '/_app/produk'
+      path: '/produk'
+      fullPath: '/produk'
+      preLoaderRoute: typeof AppProdukRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/sinkronisasi': {
+      id: '/_app/sinkronisasi'
+      path: '/sinkronisasi'
+      fullPath: '/sinkronisasi'
+      preLoaderRoute: typeof AppSinkronisasiRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/stok': {
+      id: '/_app/stok'
+      path: '/stok'
+      fullPath: '/stok'
+      preLoaderRoute: typeof AppStokRouteImport
+      parentRoute: typeof AppRoute
     }
     '/_app/gudang/': {
       id: '/_app/gudang/'
@@ -513,95 +511,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGudangIndexRouteImport
       parentRoute: typeof AppGudangRoute
     }
-    '/_app/produk/live': {
-      id: '/_app/produk/live'
-      path: '/live'
-      fullPath: '/produk/live'
-      preLoaderRoute: typeof AppProdukLiveRouteImport
-      parentRoute: typeof AppProdukRoute
-    }
-    '/_app/produk/draft': {
-      id: '/_app/produk/draft'
-      path: '/draft'
-      fullPath: '/produk/draft'
-      preLoaderRoute: typeof AppProdukDraftRouteImport
-      parentRoute: typeof AppProdukRoute
-    }
-    '/_app/produk/arsip': {
-      id: '/_app/produk/arsip'
-      path: '/arsip'
-      fullPath: '/produk/arsip'
-      preLoaderRoute: typeof AppProdukArsipRouteImport
-      parentRoute: typeof AppProdukRoute
-    }
-    '/_app/pesanan/selesai': {
-      id: '/_app/pesanan/selesai'
-      path: '/selesai'
-      fullPath: '/pesanan/selesai'
-      preLoaderRoute: typeof AppPesananSelesaiRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/proses-marketplace': {
-      id: '/_app/pesanan/proses-marketplace'
-      path: '/proses-marketplace'
-      fullPath: '/pesanan/proses-marketplace'
-      preLoaderRoute: typeof AppPesananProsesMarketplaceRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/menunggu-pickup': {
-      id: '/_app/pesanan/menunggu-pickup'
-      path: '/menunggu-pickup'
-      fullPath: '/pesanan/menunggu-pickup'
-      preLoaderRoute: typeof AppPesananMenungguPickupRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/menunggu-diproses': {
-      id: '/_app/pesanan/menunggu-diproses'
-      path: '/menunggu-diproses'
-      fullPath: '/pesanan/menunggu-diproses'
-      preLoaderRoute: typeof AppPesananMenungguDiprosesRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/menunggu-dicetak': {
-      id: '/_app/pesanan/menunggu-dicetak'
-      path: '/menunggu-dicetak'
-      fullPath: '/pesanan/menunggu-dicetak'
-      preLoaderRoute: typeof AppPesananMenungguDicetakRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/dikirim': {
-      id: '/_app/pesanan/dikirim'
-      path: '/dikirim'
-      fullPath: '/pesanan/dikirim'
-      preLoaderRoute: typeof AppPesananDikirimRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/pesanan/dibatalkan': {
-      id: '/_app/pesanan/dibatalkan'
-      path: '/dibatalkan'
-      fullPath: '/pesanan/dibatalkan'
-      preLoaderRoute: typeof AppPesananDibatalkanRouteImport
-      parentRoute: typeof AppPesananRoute
-    }
-    '/_app/gudang/stock-opname': {
-      id: '/_app/gudang/stock-opname'
-      path: '/stock-opname'
-      fullPath: '/gudang/stock-opname'
-      preLoaderRoute: typeof AppGudangStockOpnameRouteImport
-      parentRoute: typeof AppGudangRoute
-    }
-    '/_app/gudang/sku-gudang': {
-      id: '/_app/gudang/sku-gudang'
-      path: '/sku-gudang'
-      fullPath: '/gudang/sku-gudang'
-      preLoaderRoute: typeof AppGudangSkuGudangRouteImport
-      parentRoute: typeof AppGudangRoute
-    }
-    '/_app/gudang/rincian-stok': {
-      id: '/_app/gudang/rincian-stok'
-      path: '/rincian-stok'
-      fullPath: '/gudang/rincian-stok'
-      preLoaderRoute: typeof AppGudangRincianStokRouteImport
+    '/_app/gudang/penambahan-stok': {
+      id: '/_app/gudang/penambahan-stok'
+      path: '/penambahan-stok'
+      fullPath: '/gudang/penambahan-stok'
+      preLoaderRoute: typeof AppGudangPenambahanStokRouteImport
       parentRoute: typeof AppGudangRoute
     }
     '/_app/gudang/pengurangan-stok': {
@@ -611,12 +525,117 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppGudangPenguranganStokRouteImport
       parentRoute: typeof AppGudangRoute
     }
-    '/_app/gudang/penambahan-stok': {
-      id: '/_app/gudang/penambahan-stok'
-      path: '/penambahan-stok'
-      fullPath: '/gudang/penambahan-stok'
-      preLoaderRoute: typeof AppGudangPenambahanStokRouteImport
+    '/_app/gudang/rincian-stok': {
+      id: '/_app/gudang/rincian-stok'
+      path: '/rincian-stok'
+      fullPath: '/gudang/rincian-stok'
+      preLoaderRoute: typeof AppGudangRincianStokRouteImport
       parentRoute: typeof AppGudangRoute
+    }
+    '/_app/gudang/sku-gudang': {
+      id: '/_app/gudang/sku-gudang'
+      path: '/sku-gudang'
+      fullPath: '/gudang/sku-gudang'
+      preLoaderRoute: typeof AppGudangSkuGudangRouteImport
+      parentRoute: typeof AppGudangRoute
+    }
+    '/_app/gudang/stock-opname': {
+      id: '/_app/gudang/stock-opname'
+      path: '/stock-opname'
+      fullPath: '/gudang/stock-opname'
+      preLoaderRoute: typeof AppGudangStockOpnameRouteImport
+      parentRoute: typeof AppGudangRoute
+    }
+    '/_app/pesanan/': {
+      id: '/_app/pesanan/'
+      path: '/'
+      fullPath: '/pesanan/'
+      preLoaderRoute: typeof AppPesananIndexRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/dibatalkan': {
+      id: '/_app/pesanan/dibatalkan'
+      path: '/dibatalkan'
+      fullPath: '/pesanan/dibatalkan'
+      preLoaderRoute: typeof AppPesananDibatalkanRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/dikirim': {
+      id: '/_app/pesanan/dikirim'
+      path: '/dikirim'
+      fullPath: '/pesanan/dikirim'
+      preLoaderRoute: typeof AppPesananDikirimRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/menunggu-dicetak': {
+      id: '/_app/pesanan/menunggu-dicetak'
+      path: '/menunggu-dicetak'
+      fullPath: '/pesanan/menunggu-dicetak'
+      preLoaderRoute: typeof AppPesananMenungguDicetakRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/menunggu-diproses': {
+      id: '/_app/pesanan/menunggu-diproses'
+      path: '/menunggu-diproses'
+      fullPath: '/pesanan/menunggu-diproses'
+      preLoaderRoute: typeof AppPesananMenungguDiprosesRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/menunggu-pickup': {
+      id: '/_app/pesanan/menunggu-pickup'
+      path: '/menunggu-pickup'
+      fullPath: '/pesanan/menunggu-pickup'
+      preLoaderRoute: typeof AppPesananMenungguPickupRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/proses-marketplace': {
+      id: '/_app/pesanan/proses-marketplace'
+      path: '/proses-marketplace'
+      fullPath: '/pesanan/proses-marketplace'
+      preLoaderRoute: typeof AppPesananProsesMarketplaceRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/scan-kirim': {
+      id: '/_app/pesanan/scan-kirim'
+      path: '/scan-kirim'
+      fullPath: '/pesanan/scan-kirim'
+      preLoaderRoute: typeof AppPesananScanKirimRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/pesanan/selesai': {
+      id: '/_app/pesanan/selesai'
+      path: '/selesai'
+      fullPath: '/pesanan/selesai'
+      preLoaderRoute: typeof AppPesananSelesaiRouteImport
+      parentRoute: typeof AppPesananRoute
+    }
+    '/_app/produk/': {
+      id: '/_app/produk/'
+      path: '/'
+      fullPath: '/produk/'
+      preLoaderRoute: typeof AppProdukIndexRouteImport
+      parentRoute: typeof AppProdukRoute
+    }
+    '/_app/produk/arsip': {
+      id: '/_app/produk/arsip'
+      path: '/arsip'
+      fullPath: '/produk/arsip'
+      preLoaderRoute: typeof AppProdukArsipRouteImport
+      parentRoute: typeof AppProdukRoute
+    }
+    '/_app/produk/draft': {
+      id: '/_app/produk/draft'
+      path: '/draft'
+      fullPath: '/produk/draft'
+      preLoaderRoute: typeof AppProdukDraftRouteImport
+      parentRoute: typeof AppProdukRoute
+    }
+    '/_app/produk/live': {
+      id: '/_app/produk/live'
+      path: '/live'
+      fullPath: '/produk/live'
+      preLoaderRoute: typeof AppProdukLiveRouteImport
+      parentRoute: typeof AppProdukRoute
     }
   }
 }
@@ -650,6 +669,7 @@ interface AppPesananRouteChildren {
   AppPesananMenungguDiprosesRoute: typeof AppPesananMenungguDiprosesRoute
   AppPesananMenungguPickupRoute: typeof AppPesananMenungguPickupRoute
   AppPesananProsesMarketplaceRoute: typeof AppPesananProsesMarketplaceRoute
+  AppPesananScanKirimRoute: typeof AppPesananScanKirimRoute
   AppPesananSelesaiRoute: typeof AppPesananSelesaiRoute
   AppPesananIndexRoute: typeof AppPesananIndexRoute
 }
@@ -661,6 +681,7 @@ const AppPesananRouteChildren: AppPesananRouteChildren = {
   AppPesananMenungguDiprosesRoute: AppPesananMenungguDiprosesRoute,
   AppPesananMenungguPickupRoute: AppPesananMenungguPickupRoute,
   AppPesananProsesMarketplaceRoute: AppPesananProsesMarketplaceRoute,
+  AppPesananScanKirimRoute: AppPesananScanKirimRoute,
   AppPesananSelesaiRoute: AppPesananSelesaiRoute,
   AppPesananIndexRoute: AppPesananIndexRoute,
 }
@@ -723,3 +744,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
