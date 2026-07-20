@@ -16,6 +16,7 @@ export type PesananRow = {
   productName: string;
   masterSku: string;
   imageUrl: string;
+  printCount: number;
 };
 
 const buyers = [
@@ -45,5 +46,6 @@ export const pesananSample: PesananRow[] = buyers.map((buyer, i) => {
     productName: p.name,
     masterSku: p.masterSku,
     imageUrl: p.imageUrl,
+    printCount: 0,
   };
 });

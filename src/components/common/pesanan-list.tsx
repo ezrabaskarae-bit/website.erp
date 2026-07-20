@@ -1,3 +1,4 @@
+// COPILOT EDIT TEST
 import { useMemo, useState } from "react";
 import { useNavigate } from "@tanstack/react-router";
 import { format, subDays } from "date-fns";
@@ -99,6 +100,7 @@ export function PesananList({
   const [quick, setQuick] = useState<QuickRange>("all");
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
+  const [items, setItems] = useState<PesananRow[]>(pesananSample);
 
   const applyQuick = (q: QuickRange) => {
     setQuick(q);
@@ -115,7 +117,7 @@ export function PesananList({
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return pesananSample.filter((r) => {
+    return items.filter((r) => {
       if (marketplace !== "all" && r.marketplace !== marketplace) return false;
       if (toko !== "all" && r.store !== toko) return false;
       if (pengiriman !== "all" && r.kurir !== pengiriman) return false;
@@ -134,7 +136,7 @@ export function PesananList({
       }
       return true;
     });
-  }, [marketplace, toko, pengiriman, range, search, searchField]);
+  }, [items, marketplace, toko, pengiriman, range, search, searchField]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -165,10 +167,23 @@ export function PesananList({
   const isScanAndKirimLabel = (label: string) =>
     label === "Scan & Kirim" || label === "Scan dan Kirim";
 
+  const isPrintLabel = (label: string) =>
+    label === "Cetak Label Pengiriman" || label === "Cetak Massal";
+
   const handleAction = (label: string) => {
     if (isScanAndKirimLabel(label)) {
       navigate({ to: "/pesanan/scan-kirim" });
       return;
+    }
+
+    if (statusLabel === "Menunggu Dicetak" && isPrintLabel(label) && totalSelected > 0) {
+      setItems((prev) =>
+        prev.map((r) =>
+          selected.has(r.id)
+            ? { ...r, printCount: (r.printCount ?? 0) + 1 }
+            : r,
+        ),
+      );
     }
 
     toast.success(`${label}`, {
@@ -439,9 +454,24 @@ export function PesananList({
                     {idr(r.total)}
                   </TableCell>
                   <TableCell>
-                    <Badge className={cn("font-medium", statusClass)}>
-                      {statusLabel}
-                    </Badge>
+                    <div className="flex flex-col gap-1">
+                      <Badge className={cn("font-medium", statusClass)}>
+                        {statusLabel}
+                      </Badge>
+                      {r.printCount > 0 && (
+                        <div className="mt-1 flex items-center gap-2 text-[11px] text-emerald-600">
+                          <div className="flex items-end gap-[1px]">
+                            <span className="h-[12px] w-[1px] bg-emerald-600" />
+                            <span className="h-[14px] w-[2px] bg-emerald-500" />
+                            <span className="h-[13px] w-[1px] bg-emerald-600" />
+                            <span className="h-[12px] w-[2px] bg-emerald-500" />
+                            <span className="h-[14px] w-[1px] bg-emerald-600" />
+                            <span className="h-[13px] w-[2px] bg-emerald-500" />
+                          </div>
+                          <span className="font-medium">×{r.printCount}</span>
+                        </div>
+                      )}
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
