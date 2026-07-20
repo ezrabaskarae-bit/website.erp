@@ -10,6 +10,7 @@ export const Route = createFileRoute("/_app/pesanan/menunggu-dicetak")({
       statusLabel="Menunggu Dicetak"
       statusClass="bg-sky-500/10 text-sky-600 dark:text-sky-400 hover:bg-sky-500/10"
       actions={[
+        { label: "Proses", variant: "default" },
         { label: "Cetak Label Pengiriman", variant: "default" },
         { label: "Cetak Massal", variant: "outline" },
         { label: "Scan dan Kirim", variant: "outline" },

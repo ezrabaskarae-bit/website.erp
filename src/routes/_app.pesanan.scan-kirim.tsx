@@ -53,6 +53,12 @@ function ScanKirimPage() {
         setDuplicateScans((n) => n + 1);
       } else {
         // success
+        const nextStatus =
+          found.marketplace === "TikTok Shop"
+            ? "Diproses Marketplace"
+            : "Dikirim";
+        found.status = nextStatus;
+
         setScanHistory((s) => [{ resi, productName: found.productName, marketplace: found.marketplace, kurir: found.kurir, status: "Berhasil", scannedAt: time }, ...s]);
         setScannedSet((prev) => {
           const next = new Set(prev);

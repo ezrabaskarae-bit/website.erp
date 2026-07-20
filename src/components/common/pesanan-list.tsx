@@ -118,6 +118,7 @@ export function PesananList({
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return items.filter((r) => {
+      if (r.status !== statusLabel) return false;
       if (marketplace !== "all" && r.marketplace !== marketplace) return false;
       if (toko !== "all" && r.store !== toko) return false;
       if (pengiriman !== "all" && r.kurir !== pengiriman) return false;
@@ -170,6 +171,8 @@ export function PesananList({
   const isPrintLabel = (label: string) =>
     label === "Cetak Label Pengiriman" || label === "Cetak Massal";
 
+  const isProcessLabel = (label: string) => label === "Proses";
+
   const handleAction = (label: string) => {
     if (isScanAndKirimLabel(label)) {
       navigate({ to: "/pesanan/scan-kirim" });
@@ -180,8 +183,24 @@ export function PesananList({
       setItems((prev) =>
         prev.map((r) =>
           selected.has(r.id)
-            ? { ...r, printCount: (r.printCount ?? 0) + 1 }
+            ? { ...r, printCount: r.printCount + 1 }
             : r,
+        ),
+      );
+    }
+
+    if (statusLabel === "Menunggu Dicetak" && isProcessLabel(label) && totalSelected > 0) {
+      setItems((prev) =>
+        prev.map((r) =>
+          selected.has(r.id) ? { ...r, status: "Menunggu Pickup" } : r,
+        ),
+      );
+    }
+
+    if (statusLabel === "Menunggu Diproses" && isProcessLabel(label) && totalSelected > 0) {
+      setItems((prev) =>
+        prev.map((r) =>
+          selected.has(r.id) ? { ...r, status: "Menunggu Dicetak" } : r,
         ),
       );
     }

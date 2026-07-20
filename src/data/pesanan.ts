@@ -3,6 +3,15 @@ import { masterProducts } from "./products";
 export type Marketplace = "Shopee" | "Tokopedia" | "TikTok Shop" | "Lazada";
 export type Kurir = "JNE" | "J&T" | "SiCepat" | "AnterAja" | "Ninja Xpress";
 
+export type PesananStatus =
+  | "Menunggu Dicetak"
+  | "Menunggu Pickup"
+  | "Menunggu Diproses"
+  | "Dikirim"
+  | "Selesai"
+  | "Dibatalkan"
+  | "Diproses Marketplace";
+
 export type PesananRow = {
   id: string;
   // nomor resi pengiriman yang akan digunakan untuk Scan & Kirim
@@ -16,6 +25,7 @@ export type PesananRow = {
   productName: string;
   masterSku: string;
   imageUrl: string;
+  status: PesananStatus;
   printCount: number;
 };
 
@@ -33,6 +43,15 @@ const kurirs: Kurir[] = ["JNE", "J&T", "SiCepat", "AnterAja", "Ninja Xpress"];
 
 export const pesananSample: PesananRow[] = buyers.map((buyer, i) => {
   const p = masterProducts[i % masterProducts.length];
+  const status: PesananStatus =
+    i % 4 === 0
+      ? "Menunggu Dicetak"
+      : i % 4 === 1
+      ? "Menunggu Pickup"
+      : i % 4 === 2
+      ? "Menunggu Diproses"
+      : "Dikirim";
+
   return {
     id: `INV-2607${String(180 + i).padStart(4, "0")}`,
     // mock nomor resi; dipertahankan sebagai properti baru selain `id`
@@ -46,6 +65,7 @@ export const pesananSample: PesananRow[] = buyers.map((buyer, i) => {
     productName: p.name,
     masterSku: p.masterSku,
     imageUrl: p.imageUrl,
+    status,
     printCount: 0,
   };
 });
