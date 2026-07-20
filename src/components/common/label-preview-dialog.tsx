@@ -24,7 +24,7 @@ export function LabelPreviewDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <div id="label-print-area" className="space-y-4 overflow-y-auto px-0 py-4">
+        <div id="label-print-area" className="space-y-4 overflow-y-auto px-0 py-4 max-h-[calc(90vh-14rem)]">
           {orders.length === 0 && (
             <div className="rounded-2xl border border-muted/50 bg-muted/10 p-6 text-sm text-muted-foreground">
               Pilih minimal satu pesanan untuk melihat preview label.
