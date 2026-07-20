@@ -12,7 +12,6 @@ export const Route = createFileRoute("/_app/pesanan/menunggu-dicetak")({
       actions={[
         { label: "Proses", variant: "default" },
         { label: "Cetak Label Pengiriman", variant: "default" },
-        { label: "Cetak Massal", variant: "outline" },
         { label: "Scan dan Kirim", variant: "outline" },
         { label: "Aksi Massal", variant: "outline" },
       ]}

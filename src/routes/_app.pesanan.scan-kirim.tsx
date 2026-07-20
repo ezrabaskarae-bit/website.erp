@@ -26,11 +26,11 @@ function ScanKirimPage() {
     kurir?: string;
     status: ScanStatus;
     scannedAt: string;
+    message?: string;
   };
 
   const [scanInput, setScanInput] = React.useState("");
   const [scanHistory, setScanHistory] = React.useState<ScanItem[]>([]);
-  const [scannedSet, setScannedSet] = React.useState<Set<string>>(new Set());
   const [successfulScans, setSuccessfulScans] = React.useState(0);
   const [failedScans, setFailedScans] = React.useState(0);
   const [duplicateScans, setDuplicateScans] = React.useState(0);
@@ -42,33 +42,44 @@ function ScanKirimPage() {
     const resi = input.trim();
     if (!resi) return;
 
-    const found = pesananSample.find((p) => (p as any).resi === resi);
-    const isAlready = scannedSet.has(resi);
     const time = nowTime();
+    const pendingPrintOrder = pesananSample.find(
+      (p) => p.resi === resi && p.status === "Menunggu Dicetak",
+    );
+    const pickupOrder = pesananSample.find(
+      (p) => p.resi === resi && p.status === "Menunggu Pickup",
+    );
 
-    if (found) {
-      if (isAlready) {
-        // duplicate
-        setScanHistory((s) => [{ resi, productName: found.productName, marketplace: found.marketplace, kurir: found.kurir, status: "Duplikat", scannedAt: time }, ...s]);
-        setDuplicateScans((n) => n + 1);
-      } else {
-        // success
-        const nextStatus =
-          found.marketplace === "TikTok Shop"
-            ? "Diproses Marketplace"
-            : "Dikirim";
-        found.status = nextStatus;
+    if (pendingPrintOrder) {
+      pendingPrintOrder.status = "Menunggu Pickup";
 
-        setScanHistory((s) => [{ resi, productName: found.productName, marketplace: found.marketplace, kurir: found.kurir, status: "Berhasil", scannedAt: time }, ...s]);
-        setScannedSet((prev) => {
-          const next = new Set(prev);
-          next.add(resi);
-          return next;
-        });
-        setSuccessfulScans((n) => n + 1);
-      }
+      setScanHistory((s) => [
+        {
+          resi,
+          productName: pendingPrintOrder.productName,
+          marketplace: pendingPrintOrder.marketplace,
+          kurir: pendingPrintOrder.kurir,
+          status: "Berhasil",
+          scannedAt: time,
+        },
+        ...s,
+      ]);
+      setSuccessfulScans((n) => n + 1);
+    } else if (pickupOrder) {
+      setScanHistory((s) => [
+        {
+          resi,
+          productName: pickupOrder.productName,
+          marketplace: pickupOrder.marketplace,
+          kurir: pickupOrder.kurir,
+          status: "Duplikat",
+          scannedAt: time,
+          message: "Pesanan sudah berada di Menunggu Pickup.",
+        },
+        ...s,
+      ]);
+      setDuplicateScans((n) => n + 1);
     } else {
-      // not found
       setScanHistory((s) => [{ resi, status: "Tidak Ditemukan", scannedAt: time }, ...s]);
       setFailedScans((n) => n + 1);
     }

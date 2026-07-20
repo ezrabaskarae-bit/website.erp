@@ -17,6 +17,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { LabelPreviewDialog } from "@/components/common/label-preview-dialog";
+import { printShippingLabels } from "@/lib/print-label";
 import {
   Select,
   SelectContent,
@@ -101,6 +103,7 @@ export function PesananList({
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [items, setItems] = useState<PesananRow[]>(pesananSample);
+  const [isPrintDialogOpen, setIsPrintDialogOpen] = useState(false);
 
   const applyQuick = (q: QuickRange) => {
     setQuick(q);
@@ -173,20 +176,17 @@ export function PesananList({
 
   const isProcessLabel = (label: string) => label === "Proses";
 
+  const selectedOrders = items.filter((order) => selected.has(order.id));
+
   const handleAction = (label: string) => {
     if (isScanAndKirimLabel(label)) {
       navigate({ to: "/pesanan/scan-kirim" });
       return;
     }
 
-    if (statusLabel === "Menunggu Dicetak" && isPrintLabel(label) && totalSelected > 0) {
-      setItems((prev) =>
-        prev.map((r) =>
-          selected.has(r.id)
-            ? { ...r, printCount: r.printCount + 1 }
-            : r,
-        ),
-      );
+    if (statusLabel === "Menunggu Dicetak" && label === "Cetak Label Pengiriman" && totalSelected > 0) {
+      setIsPrintDialogOpen(true);
+      return;
     }
 
     if (statusLabel === "Menunggu Dicetak" && isProcessLabel(label) && totalSelected > 0) {
@@ -205,8 +205,31 @@ export function PesananList({
       );
     }
 
-    toast.success(`${label}`, {
-      description: `${totalSelected} pesanan diproses (simulasi).`,
+    if (statusLabel !== "Menunggu Dicetak" || label !== "Cetak Label Pengiriman") {
+      toast.success(`${label}`, {
+        description: `${totalSelected} pesanan diproses (simulasi).`,
+      });
+      setSelected(new Set());
+    }
+  };
+
+  const handlePrint = () => {
+    const printed = printShippingLabels(selectedOrders);
+    if (!printed) {
+      toast.error("Gagal membuka jendela cetak. Pastikan popup tidak diblokir.");
+      return;
+    }
+
+    setItems((prev) =>
+      prev.map((r) =>
+        selected.has(r.id)
+          ? { ...r, printCount: r.printCount + 1 }
+          : r,
+      ),
+    );
+    setIsPrintDialogOpen(false);
+    toast.success("Cetak Label Pengiriman", {
+      description: `${totalSelected} pesanan dicetak (simulasi).`,
     });
     setSelected(new Set());
   };
@@ -392,6 +415,13 @@ export function PesananList({
           </span>
         </div>
       )}
+
+      <LabelPreviewDialog
+        open={isPrintDialogOpen}
+        onOpenChange={setIsPrintDialogOpen}
+        orders={selectedOrders}
+        onPrint={handlePrint}
+      />
 
       <Card className="overflow-hidden">
         <div className="overflow-x-auto">
