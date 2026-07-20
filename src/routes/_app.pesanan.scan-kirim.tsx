@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { pesananSample } from "@/data/pesanan";
+import { playDuplicate, playFailed, playSuccess } from "@/lib/scan-audio";
 
 export const Route = createFileRoute("/_app/pesanan/scan-kirim")({
   head: () => ({ meta: [{ title: "Scan & Kirim — MAQIL.ERP" }] }),
@@ -53,6 +54,8 @@ function ScanKirimPage() {
     if (pendingPrintOrder) {
       pendingPrintOrder.status = "Menunggu Pickup";
 
+      playSuccess();
+
       setScanHistory((s) => [
         {
           resi,
@@ -66,6 +69,8 @@ function ScanKirimPage() {
       ]);
       setSuccessfulScans((n) => n + 1);
     } else if (pickupOrder) {
+      playDuplicate();
+
       setScanHistory((s) => [
         {
           resi,
@@ -80,6 +85,8 @@ function ScanKirimPage() {
       ]);
       setDuplicateScans((n) => n + 1);
     } else {
+      playFailed();
+
       setScanHistory((s) => [{ resi, status: "Tidak Ditemukan", scannedAt: time }, ...s]);
       setFailedScans((n) => n + 1);
     }
